@@ -7,6 +7,10 @@ class Table extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      list: Store.getData()
+    }
+
     Store.addListener('change', () => {
       this.setState({
         list: Store.getData()
@@ -25,7 +29,7 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-         {Store.getData().map((row, rowIndex) => {
+         {this.state.list.map((row, rowIndex) => {
            return (
              <tr key={rowIndex}>
                {Object.keys(row).map((cell, cellIndex) => {
